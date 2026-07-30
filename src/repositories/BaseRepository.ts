@@ -59,7 +59,7 @@ export abstract class BaseRepository<T> {
     
     const { data, error } = await this.getClient()
       .from(this.tableName)
-      .insert(item)
+      .insert(item as any)
       .select()
       .single();
 
@@ -73,7 +73,7 @@ export abstract class BaseRepository<T> {
   async update(id: string, item: Partial<T>): Promise<DbResponse<T>> {
     const { data, error } = await this.getClient()
       .from(this.tableName)
-      .update(item)
+      .update(item as any)
       .eq('id', id)
       .select()
       .single();

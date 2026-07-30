@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { PropertyCategory, PropertyStatus } from '../../types/database';
 
 export const createPropertySchema = z.object({
   title: z.string().min(10, 'Title must be at least 10 characters').max(255, 'Title must be less than 255 characters'),

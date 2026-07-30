@@ -1,6 +1,5 @@
 import { BaseRepository } from '../BaseRepository';
-import { Broker, DbResponse, DbResponseArray } from '../../types/database';
-import { PaginationParams } from '../../types/express';
+import { Broker, DbResponse, SubscriptionStatus } from '../../types/database';
 
 export class BrokerAuthRepository extends BaseRepository<Broker> {
   constructor() {
@@ -28,7 +27,7 @@ export class BrokerAuthRepository extends BaseRepository<Broker> {
     return this.update(id, brokerData);
   }
 
-  async updateVerificationStatus(id: string, status: 'Pending Verification' | 'Approved' | 'Rejected'): Promise<DbResponse<Broker>> {
-    return this.update(id, { verification_status: status });
+  async updateVerificationStatus(id: string, status: SubscriptionStatus): Promise<DbResponse<Broker>> {
+    return this.update(id, { subscription_status: status });
   }
 }

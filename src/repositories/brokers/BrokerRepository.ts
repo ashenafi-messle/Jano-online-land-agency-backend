@@ -18,19 +18,19 @@ export class BrokerRepository extends BaseRepository<Broker> {
   }
 
   async findApproved(pagination?: PaginationParams): Promise<DbResponseArray<Broker>> {
-    return this.findAll({ is_approved: true }, pagination);
+    return this.findAll({ subscription_status: 'Active' }, pagination);
   }
 
   async findActive(pagination?: PaginationParams): Promise<DbResponseArray<Broker>> {
-    return this.findAll({ is_active: true, is_approved: true }, pagination);
+    return this.findAll({ subscription_status: 'Active' }, pagination);
   }
 
   async updateApprovalStatus(id: string, isApproved: boolean): Promise<DbResponse<Broker>> {
-    return this.update(id, { is_approved: isApproved });
+    return this.update(id, { subscription_status: isApproved ? 'Active' : 'Pending' });
   }
 
   async updateActiveStatus(id: string, isActive: boolean): Promise<DbResponse<Broker>> {
-    return this.update(id, { is_active: isActive });
+    return this.update(id, { subscription_status: isActive ? 'Active' : 'Expired' });
   }
 
   async updateProfile(id: string, profileData: Partial<Broker>): Promise<DbResponse<Broker>> {
