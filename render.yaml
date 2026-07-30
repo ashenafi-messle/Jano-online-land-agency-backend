@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: jano-online-land-agency-backend-4
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: http://localhost:3000,http://localhost:3001,http://localhost:3002,https://jano-online-land-agency-ui.ashurack664.workers.dev

@@ -25,9 +25,16 @@ app.use(cors({
       ? config.cors.origin 
       : [config.cors.origin];
     
+    // For development, allow all origins temporarily
+    if (process.env.NODE_ENV === 'development') {
+      return callback(null, true);
+    }
+    
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log('CORS blocked origin:', origin);
+      console.log('Allowed origins:', allowedOrigins);
       callback(new Error('Not allowed by CORS'));
     }
   },

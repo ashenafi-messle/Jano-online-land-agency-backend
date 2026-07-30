@@ -17,7 +17,7 @@ export const config = {
   cors: {
     origin: process.env.CORS_ORIGIN 
       ? (Array.isArray(process.env.CORS_ORIGIN) ? process.env.CORS_ORIGIN : process.env.CORS_ORIGIN.split(','))
-      : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'https://jano-online-land-agency-ui.ashurack664.workers.dev'],
+      : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'https://jano-online-land-agency-ui.ashurack664.workers.dev', '*'],
   },
   rateLimit: {
     windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10),
