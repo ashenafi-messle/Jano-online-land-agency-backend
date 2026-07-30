@@ -15,7 +15,9 @@ export const config = {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   },
   cors: {
-    origin: process.env.CORS_ORIGIN || ['http://localhost:3000', 'http://localhost:3001'],
+    origin: process.env.CORS_ORIGIN 
+      ? (Array.isArray(process.env.CORS_ORIGIN) ? process.env.CORS_ORIGIN : process.env.CORS_ORIGIN.split(','))
+      : ['http://localhost:3000', 'http://localhost:3001', 'https://jano-online-land-agency-ui.ashurack664.workers.dev'],
   },
   rateLimit: {
     windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10),
